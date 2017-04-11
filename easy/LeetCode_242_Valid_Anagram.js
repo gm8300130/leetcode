@@ -41,19 +41,10 @@ var isAnagram = function(s, t) {
 		return false;
 	}
 
-	const s_array = s.split('');
-	const t_array = t.split('');
+	var s = s.split('').sort().join('');
+	var t = t.split('').sort().join('');
 
-	s_array.sort();
-	t_array.sort();
-
-	for (i = 0; i < s_array.length-1; i++) {
-		if (s_array[i] != t_array[i]) {
-			return false;
-		}
-	}
-
-	return true;
+	return s == t;
 };
 
 isAnagram('owdr' , 'word'); //true
