@@ -18,19 +18,15 @@ For example, Given s = "Hello World", return 5.
  */
 var lengthOfLastWord = function(s) {
 
-    if (s.length === 0) {
-    	return 0;
-    }
+	var count = 0;
 
-    var str_arry = s.split(/\s/);
-    // 濾除空白
-    str_arry = str_arry.filter(function(n){
-    	return n;
-    })
-
-    if (str_arry.length === 0) {
-        return 0;
+    for (let i = s.length - 1; i >= 0; i--) {
+    	if (s[i] == ' ' && count != 0) {
+    		break;
+    	}
+    	if (s[i] != ' ' || count != 0) {
+    		count++;
+    	}
     }
-    //取最後一個單字長度
-    return str_arry.pop().length;
+    return count;
 };
