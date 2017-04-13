@@ -18,15 +18,21 @@ For example, Given s = "Hello World", return 5.
  */
 var lengthOfLastWord = function(s) {
 
-	var count = 0;
-
-    for (let i = s.length - 1; i >= 0; i--) {
-    	if (s[i] == ' ' && count != 0) {
-    		break;
-    	}
-    	if (s[i] != ' ' || count != 0) {
-    		count++;
-    	}
+    if (s.trim().length === 0) {
+        return 0;
     }
-    return count;
+    //先左右去空白
+    var str = s.trim();
+    //slice 取得最後一個字元
+    var last_word = str.slice(-1);
+    //lastIndexOf 最後字元的位置
+    var last_word_key = str.lastIndexOf(last_word);
+    var lest_key = str.lastIndexOf(' ');
+    //代表只有一個單字
+    if(lest_key < 0) {
+        lest_key = 0
+        last_word_key++;
+    }
+
+	return last_word_key - lest_key;
 };
