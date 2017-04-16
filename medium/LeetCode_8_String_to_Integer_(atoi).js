@@ -26,25 +26,56 @@ atoi的需求：
 /**
  * @param {string} str
  * @return {number}
- * praseInt 寫法Runtiome 149ms
+ * 不用parseInt() Runtime 172ms
  */
 var myAtoi = function(str) {
-    let number = parseInt(str) ;
-    // 不是數字就可以跳出了
-    if (isNaN(number)) {
-        return 0;
+    //迴圈計數
+    let i = 0;
+    //空白計數
+    let j = 0;
+    //正規化判斷用
+    let reg = /^[0-9]/;
+    //符號
+    let symbol = '';
+    let value = 0;
+    //都是空白就直接return
+    if (str.replace(' ','') === '') {
+        return value;
     }
 
-    const MAX = 2147483647;
-    const MIN = -2147483648;
+    while (i < str.length) {
+        if (str.charAt(i) == ' ') {
+            j++;
+        }
+        //非空白時進入
+        if (j <= i) {
+            //非數字
+            if ( !reg.test( str.charAt(i) ) ) {
+                //如果符號已存在, 代表又一次非數字, 就直接return
+                if (symbol != '') {
+                    return (symbol + value) * 1;
+                }
+                //代表是開頭
+                if ( (str.charAt(i) == '-' || str.charAt(i) == '+') && value == 0 ) {
+                    symbol = str.charAt(i);
+                } else {
+                    return (symbol + value) * 1;
+                }
+            }
 
-    if (number >= MAX) {
-    	return MAX;
-    } else if (number <= MIN) {
-    	return MIN
-    } else if (number < MAX && number > MIN) {
-    	return number;
+            //把數字接上去
+            if ( reg.test( str.charAt(i) ) ) {
+                value += str.charAt(i);
+            }
+
+            if ( (symbol + value) * 1 > 2147483647 ) {
+                return 2147483647;
+            } else if ( (symbol + value) * 1 < -2147483648 ) {
+                return -2147483648;
+            }
+        }
+        i++;
     }
-
-    return 0;
+    return (symbol + value) * 1;
 };
+
