@@ -23,17 +23,11 @@ AB -> 28
  * @return {number}
  */
 var titleToNumber = function(s) {
-    let sum = 0;
- 	let i = 0;
- 	let len = s.length - 1;
+    let letter_count = 26;
+    let base_charcode = 'A'.charCodeAt(0) - 1;
 
- 	while (len >= 0) {
- 		//A的ANIS CODE = 65, 從最後一位數開始
- 		value = s.charCodeAt(len) - 64;
- 		// 英文字母有26位,0 次方= 1
- 		value = value * Math.pow( 26, i++);
- 		sum += value;
- 		len--;
- 	}
- 	return sum;
-}
+    return s.split('').reduce(
+        (acc, cur) =>
+            acc * letter_count + cur.charCodeAt(0) - base_charcode
+            , 0);
+};
