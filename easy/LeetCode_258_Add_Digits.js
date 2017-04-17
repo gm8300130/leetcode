@@ -29,19 +29,9 @@ num = 38，則 3+8 = 11，1+1 = 2, 2是個為數，回傳2。
  * @return {number}
  */
 var addDigits = function(num) {
-	//代表只有個位數, 可直接跳出
-    if (num < 10) {
-        return num;
-    }
 
-    let str = String(num).split('');
-    let len = str.length - 1;
-    let i = 0 ;
-    //ex : [1, 2, 3] => [1, 3, 6]
-    var array_sum = str.map(function(val){
-        i += parseInt(val);
-    	return i;
-    });
-    //取陣列最後一位
-    return addDigits(array_sum[len]);
+    if (num > 9) {
+        num = addDigits( parseInt(num / 10) + num % 10 );
+    }
+    return num;
 };
