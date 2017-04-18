@@ -15,12 +15,6 @@ Follow up: Could you do it without using any loop / recursion?
  * @return {boolean}
  */
 var isPowerOfThree = function(n) {
-
-	while (n > 2) {
-		if (n % 3 !== 0) {
-			return false;
-		}
-		n = n / 3 ;
-	}
-	return n === 1;
+	//把數字轉成三進位制的字串, 只要是開頭1 + 1個以上的0, ex:10 100 1000 ...就代表是三的次方
+	return /^10*$/.test( n.toString(3) );
 };
