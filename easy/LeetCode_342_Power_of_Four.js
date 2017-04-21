@@ -21,16 +21,9 @@ Follow up: Could you solve it without loops/recursion?
  */
 var isPowerOfFour = function(num) {
 
-	if ( num <= 0 || num == 2 ) {
+	if ( num <= 0 ) {
 		return false;
 	}
-	if ( num === 1 ) {
-	    return true;
-	}
 
-	while ( num >= 4 && num % 4 === 0 ) {
-		num = num / 4;
-	}
-
-	return num === 1;
+    return /^10*$/.test(num.toString(4));
 };
