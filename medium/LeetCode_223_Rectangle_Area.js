@@ -28,20 +28,17 @@ Assume that the total area is never beyond the maximum possible value of int.
  */
 var computeArea = function(A, B, C, D, E, F, G, H) {
     //分別計算兩個面積
-	let one = Math.abs(A - C) * Math.abs(B - D);
-	let two = Math.abs(E - G) * Math.abs(F - H);
-	
-	//符合這幾個條件代表未重疊
-	if ( A >= G  || B >= H || E >= C || F >= D ) {
-    	return one + two;
-    }
-	
-	//有重疊的話
-    let left_bottom = Math.max(A, E);
-    let right_bottom = Math.min(C, G);
-    let left_high = Math.max(B, F);
-    let right_high = Math.min(D, H);
-    let overlapping = Math.abs( left_bottom - right_bottom ) * Math.abs( left_high - right_high );
+    let one = Math.abs(A - C) * Math.abs(B - D);
+    let two = Math.abs(E - G) * Math.abs(F - H);
 
+    let left = Math.max(A, E);
+    let right = Math.min(C, G);
+    let bottom = Math.max(B, F);
+    let top = Math.min(D, H);
+    let overlapping = 0;
+    //有重疊的話
+    if ( left < right && bottom < top) {
+    	overlapping =  ( right - left ) * ( top - bottom );
+    }
     return one + two - overlapping;
 };
