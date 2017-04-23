@@ -21,8 +21,8 @@ There is a more generic way of solving this problem.
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    //因為int 有正負最大值
-    if ( x < 0 || x > Math.pow(2, 32) - 1 ) {
+    //因為int 有最大值
+    if ( x < 0 || x > Math.pow(2, 31) - 1 ) {
     	return false;
     }
     if ( x < 9 ) {
