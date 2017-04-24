@@ -27,22 +27,14 @@ var intersection = function(nums1, nums2) {
     if ( nums1.length === 0 || nums2.length === 0 ) {
     	return [];
     }
-    //先找分出陣列長短
-    let long_array = nums1;
-    let short_array = nums2;
-
-    if ( nums1.length < nums2.length ) {
-    	long_array = nums2;
-    	short_array = nums1;
-    }
 
     let result = [];
-    //短的開始跑, 有交集到就存入, result 但要排除重複
-    for ( let i = 0; i < short_array.length; i++ ) {
-    	if ( long_array.indexOf(short_array[i]) > -1
-    		&& result.indexOf(short_array[i]) == -1 ) {
-    		result.push(short_array[i]);
-    	}
-    }
+
+    nums2.map(function(num){
+        if ( nums1.indexOf(num) > -1 && result.indexOf(num) == -1 ) {
+            result.push(num);
+        }
+    });
+
     return result;
 };
