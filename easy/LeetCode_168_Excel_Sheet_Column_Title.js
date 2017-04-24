@@ -24,25 +24,21 @@ For example:
  * @return {string}
  */
 var convertToTitle = function(n) {
-	//charcode(A) = 65; (Z) = 90;
+	//英文字母總數
 	let base = 26;
-	//charcode 轉數字差額
-	let charcode_to_num_diff = 'A'.charCodeAt() - 1;
-	//小於27, 可以直接顯示
+	//charcode(A) = 65; (Z) = 90;
+	let charcode_to_num = 'A'.charCodeAt();
+	//小於27(A~Z), 可以直接顯示
 	if ( n - 1 < base ) {
-		return String.fromCharCode(n + charcode_to_num_diff);
+	    return String.fromCharCode( (n - 1) % base + charcode_to_num);
 	}
 
 	let str = '';
 	let excel_str = '';
+
 	while ( n > 0 ) {
-	    if ( n % base == 0 ) {
-	        str = String.fromCharCode(n % base + charcode_to_num_diff + base);
-	        n = parseInt( (n - base) / base);
-	    } else {
-		    str = String.fromCharCode(n % base + charcode_to_num_diff);
-		    n = parseInt(n / base);
-	    }
+	    str = String.fromCharCode( (n - 1) % base + charcode_to_num);
+	    n = parseInt( (n - 1) / base);
 		excel_str = str + excel_str;
 	}
 
