@@ -31,3 +31,18 @@ var merge = function (nums1, m, nums2, n) {
         return a - b;
     });  
 };
+
+var merge = function (nums1, m, nums2, n) {
+    
+    let length = m + n - 1;
+    let i = m - 1;
+    let j = n - 1;
+    
+    while ( j >= 0 ) {
+        if ( i >= 0 && nums2[j] < nums1[i] ) {
+            nums1[length--] = nums1[i--];
+        } else { 
+            nums1[length--] = nums2[j--];
+        }
+    }
+};
