@@ -6,5 +6,6 @@
 
 * [hard](https://github.com/gm8300130/leetcode/tree/master/hard)
 
-## 詳細參閱:
-`http://blog.leanote.com/single/gm8300130/LeetCode`
+## 詳細參閱
+
+[http://blog.leanote.com/single/gm8300130/LeetCode](http://blog.leanote.com/single/gm8300130/LeetCode)
